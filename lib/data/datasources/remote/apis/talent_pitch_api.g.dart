@@ -21,13 +21,13 @@ class _TalentPitchApi implements TalentPitchApi {
   String? baseUrl;
 
   @override
-  Future<List<PitchResponseDto>> getTalentPitches() async {
+  Future<PitchDataResponseDto> getTalentPitches() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<PitchResponseDto>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PitchDataResponseDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -43,10 +43,7 @@ class _TalentPitchApi implements TalentPitchApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map(
-            (dynamic i) => PitchResponseDto.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = PitchDataResponseDto.fromJson(_result.data!);
     return value;
   }
 
