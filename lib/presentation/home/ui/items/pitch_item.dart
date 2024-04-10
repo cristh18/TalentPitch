@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class PitchItem extends StatelessWidget {
@@ -29,10 +30,20 @@ class PitchItem extends StatelessWidget {
                   backgroundImageKey: backgroundImageKey,
                 ),
                 children: <Widget>[
-                  Image.network(
-                    imageUrl,
+                  CachedNetworkImage(
+                    imageUrl: imageUrl,
                     key: backgroundImageKey,
                     fit: BoxFit.cover,
+                    progressIndicatorBuilder: (BuildContext context, String url,
+                            DownloadProgress downloadProgress) =>
+                        CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                    errorWidget:
+                        (BuildContext context, String url, Object error) =>
+                            Image.asset(
+                      'assets/images/img_default_avatar.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ],
               ),
