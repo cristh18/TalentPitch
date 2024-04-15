@@ -99,6 +99,7 @@ class _BuildAPODBodyWidget extends StatelessWidget {
             child: __BuildListWidget(
               pitches: pitches,
               onRefresh: cubit.getTalentPitches,
+              onGetCategoryVideos: cubit.getCategoryVideos,
             ),
           ),
         ],
@@ -111,9 +112,11 @@ class __BuildListWidget extends StatelessWidget {
   const __BuildListWidget({
     required this.pitches,
     required this.onRefresh,
+    required this.onGetCategoryVideos,
   });
   final List<PitchModel> pitches;
   final RefreshCallback onRefresh;
+  final Function(String) onGetCategoryVideos;
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +138,7 @@ class __BuildListWidget extends StatelessWidget {
               //         PictureDetailScreen(astronomyPicture: picture),
               //   ),
               // );
+              onGetCategoryVideos(pitch.url.replaceAll('%2F', '/'));
             },
             child: PitchItem(
               title: pitch.title,

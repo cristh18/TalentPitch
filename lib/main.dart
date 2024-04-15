@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'data/datasources/remote/apis/talent_pitch_api.dart';
 import 'data/repositories/pitch_repository.dart';
+import 'network/http_dio_manager.dart';
 import 'presentation/home/ui/home_page.dart';
 
 void main() {
@@ -17,10 +18,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final Dio dio = Dio();
+    final HttpDioManager httpDioManager =
+        HttpDioManager(interceptors: <InterceptorsWrapper>[]);
+    // final Dio dio = Dio();
     return RepositoryProvider<PitchRepository>(
       create: (BuildContext context) =>
-          PitchRepository(talentPitchApi: TalentPitchApi(dio)),
+          PitchRepository(talentPitchApi: TalentPitchApi(httpDioManager.dio)),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -1,3 +1,4 @@
+
 import '../../domain/models/pitch_model.dart';
 import '../datasources/remote/apis/talent_pitch_api.dart';
 import '../datasources/remote/dtos/pitch_data_response_dto.dart';
@@ -19,5 +20,9 @@ class PitchRepository {
           .toList();
       return data;
     });
+  }
+
+  Future<Object> getCategoryVideos(String url) {
+    return talentPitchApi.getCategoryVideos(url);
   }
 }

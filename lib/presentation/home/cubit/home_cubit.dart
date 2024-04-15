@@ -26,4 +26,13 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(status: HomeStatus.error));
     }
   }
+
+  Future<void> getCategoryVideos(String url) async {
+    emit(state.copyWith(status: HomeStatus.loading));
+    try {
+      await pitchRepository.getCategoryVideos(url);
+    } catch (e) {
+      emit(state.copyWith(status: HomeStatus.error));
+    }
+  }
 }

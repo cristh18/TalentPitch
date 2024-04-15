@@ -12,9 +12,7 @@ class _TalentPitchApi implements TalentPitchApi {
   _TalentPitchApi(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://data2.talentpitch.co';
-  }
+  });
 
   final Dio _dio;
 
@@ -44,6 +42,32 @@ class _TalentPitchApi implements TalentPitchApi {
               baseUrl,
             ))));
     final value = PitchDataResponseDto.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Object> getCategoryVideos(String url) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch(_setStreamType<Object>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data;
     return value;
   }
 
