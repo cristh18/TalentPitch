@@ -21,8 +21,4 @@ class PitchRepository {
       return data;
     });
   }
-
-  Future<Object> getCategoryVideos(String url) {
-    return talentPitchApi.getCategoryVideos(url);
-  }
 }

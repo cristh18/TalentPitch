@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'talent_pitch_api.dart';
+part of 'category_videos_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'talent_pitch_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TalentPitchApi implements TalentPitchApi {
-  _TalentPitchApi(
+class _CategoryVideosApi implements CategoryVideosApi {
+  _CategoryVideosApi(
     this._dio, {
     this.baseUrl,
   });
@@ -19,29 +19,28 @@ class _TalentPitchApi implements TalentPitchApi {
   String? baseUrl;
 
   @override
-  Future<PitchDataResponseDto> getTalentPitches() async {
+  Future<Object> getCategoryVideos(String url) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PitchDataResponseDto>(Options(
+    final _result = await _dio.fetch(_setStreamType<Object>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/api/homeservice/categories/all/12',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = PitchDataResponseDto.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '${url}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data;
     return value;
   }
 

@@ -27,12 +27,6 @@ class HttpDioManager {
 
   final Dio dio;
 
-  void updateUrl(String url) {
-    dio.options.baseUrl = url;
-  }
-
-  
-
   void close() {
     dio.close();
   }

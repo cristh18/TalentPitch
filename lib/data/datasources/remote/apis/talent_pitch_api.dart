@@ -11,7 +11,4 @@ abstract class TalentPitchApi {
 
   @GET('/api/homeservice/categories/all/12')
   Future<PitchDataResponseDto> getTalentPitches();
-
-  @GET('/')
-  Future<Object> getCategoryVideos(String url);
 }
