@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
             color: const Color(0xFF000B49),
             child: Center(
               child: Text(
-                'Expore',
+                'Explore',
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
