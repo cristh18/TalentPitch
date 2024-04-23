@@ -2,20 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:logger/logger.dart';
 
-import '../../../data/repositories/category_videos_repository.dart';
 import '../../../data/repositories/pitch_repository.dart';
 import '../../../domain/models/pitch_model.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit({
-    required this.pitchRepository,
-    required this.categoryVideosRepository,
-  }) : super(const HomeState());
+  HomeCubit({required this.pitchRepository}) : super(const HomeState());
 
   final PitchRepository pitchRepository;
-  final CategoryVideosRepository categoryVideosRepository;
 
   Future<void> getTalentPitches() async {
     emit(state.copyWith(status: HomeStatus.loading));
@@ -26,16 +21,6 @@ class HomeCubit extends Cubit<HomeState> {
         logger.i(element.toString());
       }
       emit(state.copyWith(status: HomeStatus.success, pitches: pitches));
-    } catch (e) {
-      emit(state.copyWith(status: HomeStatus.error));
-    }
-  }
-
-  Future<void> getCategoryVideos(String url) async {
-    emit(state.copyWith(status: HomeStatus.loading));
-    try {
-      await categoryVideosRepository.getCategoryVideos(url);
-      emit(state.copyWith(status: HomeStatus.success, pitches: <PitchModel>[]));
     } catch (e) {
       emit(state.copyWith(status: HomeStatus.error));
     }

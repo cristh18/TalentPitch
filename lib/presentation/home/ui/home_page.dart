@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repositories/category_videos_repository.dart';
 import '../../../data/repositories/pitch_repository.dart';
 import '../../../di/service_locator.dart';
 import '../cubit/home_cubit.dart';
@@ -14,8 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
       create: (BuildContext context) => HomeCubit(
-          pitchRepository: locator<PitchRepository>(),
-          categoryVideosRepository: locator<CategoryVideosRepository>())
+          pitchRepository: locator<PitchRepository>())
         ..getTalentPitches(),
       child: const HomeView(),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/models/pitch_model.dart';
+import '../../category_videos/ui/category_videos_page.dart';
 import '../cubit/home_cubit.dart';
 import 'items/pitch_item.dart';
 
@@ -99,7 +100,6 @@ class _BuildAPODBodyWidget extends StatelessWidget {
             child: __BuildListWidget(
               pitches: pitches,
               onRefresh: cubit.getTalentPitches,
-              onGetCategoryVideos: cubit.getCategoryVideos,
             ),
           ),
         ],
@@ -112,11 +112,9 @@ class __BuildListWidget extends StatelessWidget {
   const __BuildListWidget({
     required this.pitches,
     required this.onRefresh,
-    required this.onGetCategoryVideos,
   });
   final List<PitchModel> pitches;
   final RefreshCallback onRefresh;
-  final Function(String) onGetCategoryVideos;
 
   @override
   Widget build(BuildContext context) {
@@ -131,14 +129,13 @@ class __BuildListWidget extends StatelessWidget {
 
           return InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) =>
-              //         PictureDetailScreen(astronomyPicture: picture),
-              //   ),
-              // );
-              onGetCategoryVideos(pitch.url.replaceAll('%2F', '/'));
+              Navigator.push(
+                context,
+                MaterialPageRoute<dynamic>(
+                  builder: (BuildContext context) =>
+                      CategoryVideosPage(categoryVideosUrl: pitch.url),
+                ),
+              );
             },
             child: PitchItem(
               title: pitch.title,
