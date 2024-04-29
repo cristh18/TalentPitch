@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../utils/date_util.dart';
+import '../../../../utils/general_util.dart';
 
 @JsonSerializable(explicitToJson: true)
 class VideoDataResponseDto {
@@ -62,7 +63,7 @@ class VideoDataResponseDto {
       compatibility: json['compatibility'],
       compatibilityReason: json['compatibility_reason'],
       completedProfile: json['completed_profile'] ?? 0,
-      connected: json['connected'] ?? '',
+      connected: getConnectedValue(json['connected']),
       country: json['country'] ?? '',
       createdAt: tryParse(json['created_at']),
       desiredRole: json['desired_role'] ?? '',
