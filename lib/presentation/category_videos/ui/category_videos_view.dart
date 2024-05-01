@@ -37,6 +37,12 @@ class CategoryVideosView extends StatelessWidget {
                       subtitle: Text(categoryVideo.resumeDescription),
                       onTap: () {
                         // cubit.getCategoryVideoDetails(categoryVideo.id);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<dynamic>(
+                                builder: (BuildContext context) => Container(
+                                      child: Text(categoryVideo.name),
+                                    )));
                       },
                     );
                   },
