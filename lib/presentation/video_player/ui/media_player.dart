@@ -24,11 +24,12 @@ class _MoviePlayerState extends State<MoviePlayer> {
   void initState() {
     super.initState();
 
-    videoPlayerController = VideoPlayerController.network(widget.video.videoUrl)
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+    videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.video.videoUrl))
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {});
+          });
 
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
