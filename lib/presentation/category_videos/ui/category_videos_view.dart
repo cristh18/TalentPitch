@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
+import '../../video_player/ui/media_player.dart';
 import '../cubit/category_videos_cubit.dart';
 
 class CategoryVideosView extends StatelessWidget {
@@ -36,13 +37,11 @@ class CategoryVideosView extends StatelessWidget {
                       title: Text(categoryVideo.name),
                       subtitle: Text(categoryVideo.resumeDescription),
                       onTap: () {
-                        // cubit.getCategoryVideoDetails(categoryVideo.id);
                         Navigator.push(
                             context,
                             MaterialPageRoute<dynamic>(
-                                builder: (BuildContext context) => Container(
-                                      child: Text(categoryVideo.name),
-                                    )));
+                                builder: (BuildContext context) =>
+                                    MoviePlayer(video: categoryVideo)));
                       },
                     );
                   },
