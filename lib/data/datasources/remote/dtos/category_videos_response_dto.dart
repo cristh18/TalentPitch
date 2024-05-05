@@ -14,7 +14,7 @@ class CategoryVideosResponseDto {
     return CategoryVideosResponseDto(
       count: json['count'] ?? 0,
       data: (json['data'] as List<dynamic>?)
-              ?.map((e) =>
+              ?.map((dynamic e) =>
                   VideoDataResponseDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           <VideoDataResponseDto>[],
@@ -24,13 +24,6 @@ class CategoryVideosResponseDto {
       title: json['title'] ?? '',
     );
   }
-
-  // factory PitchDataResponseDto.fromJson(Map<String, dynamic> json) {
-  //   final List<PitchResponseDto> data = (json['data'] as List<dynamic>)
-  //       .map((dynamic e) => PitchResponseDto.fromJson(e as Map<String, dynamic>))
-  //       .toList();
-  //   return PitchDataResponseDto(data: data);
-  // }
 
   final int count;
   final List<VideoDataResponseDto> data;
