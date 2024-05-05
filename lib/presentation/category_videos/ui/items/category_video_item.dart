@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
 import '../../../../data/datasources/remote/dtos/video_data_response_dto.dart';
 
 class CategoryVideoItem extends StatelessWidget {
   const CategoryVideoItem({
-    super.key,
+    Key? key,
     required this.categoryVideo,
     required this.onVideoSelected,
-  });
+  }) : super(key: key);
 
   final VideoDataResponseDto categoryVideo;
   final Function(VideoDataResponseDto) onVideoSelected;
@@ -20,7 +19,7 @@ class CategoryVideoItem extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             AspectRatio(
               aspectRatio: 16 / 9,
               child: ClipRRect(
@@ -28,6 +27,16 @@ class CategoryVideoItem extends StatelessWidget {
                 child: Image.network(
                   categoryVideo.avatar,
                   fit: BoxFit.cover,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
               ),
             ),
