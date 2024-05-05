@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
 import '../../video_player/ui/media_player.dart';
 import '../cubit/category_videos_cubit.dart';
+import 'items/category_video_item.dart';
 
 class CategoryVideosView extends StatelessWidget {
   const CategoryVideosView({Key? key}) : super(key: key);
@@ -33,17 +34,17 @@ class CategoryVideosView extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final VideoDataResponseDto categoryVideo =
                         state.videos[index];
-                    return ListTile(
-                      title: Text(categoryVideo.name),
-                      subtitle: Text(categoryVideo.resumeDescription),
-                      onTap: () {
+                    return InkWell(
+                        child: CategoryVideoItem(
+                      categoryVideo: categoryVideo,
+                      onVideoSelected: (VideoDataResponseDto video) {
                         Navigator.push(
                             context,
                             MaterialPageRoute<dynamic>(
                                 builder: (BuildContext context) =>
-                                    MoviePlayer(video: categoryVideo)));
+                                    MoviePlayer(video: video)));
                       },
-                    );
+                    ));
                   },
                 );
             }
