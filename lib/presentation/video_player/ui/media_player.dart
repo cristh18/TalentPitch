@@ -2,7 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
+import '../../../data/datasources/remote/dtos/pitch_dto.dart';
 
 class MoviePlayer extends StatefulWidget {
   const MoviePlayer({
@@ -10,7 +10,7 @@ class MoviePlayer extends StatefulWidget {
     required this.video,
   }) : super(key: key);
 
-  final VideoDataResponseDto video;
+  final PitchDto video;
 
   @override
   State<MoviePlayer> createState() => _MoviePlayerState();

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'talent_pitch_api.dart';
+part of 'talents_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'talent_pitch_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TalentPitchApi implements TalentPitchApi {
-  _TalentPitchApi(
+class _TalentsApi implements TalentsApi {
+  _TalentsApi(
     this._dio, {
     this.baseUrl,
   });
@@ -19,13 +19,13 @@ class _TalentPitchApi implements TalentPitchApi {
   String? baseUrl;
 
   @override
-  Future<PitchDataResponseDto> getTalentPitches() async {
+  Future<TalentsDto> getTalents() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PitchDataResponseDto>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<TalentsDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -41,7 +41,7 @@ class _TalentPitchApi implements TalentPitchApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = PitchDataResponseDto.fromJson(_result.data!);
+    final value = TalentsDto.fromJson(_result.data!);
     return value;
   }
 

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import '../data/datasources/remote/apis/category_videos_api.dart';
-import '../data/datasources/remote/apis/talent_pitch_api.dart';
-import '../data/repositories/category_videos_repository.dart';
-import '../data/repositories/pitch_repository.dart';
+import '../data/datasources/remote/apis/talent_category_detail_api.dart';
+import '../data/datasources/remote/apis/talents_api.dart';
+import '../data/repositories/talent_category_detail_repository.dart';
+import '../data/repositories/talents_repository.dart';
 import '../network/http_dio_manager.dart';
 import '../network/interceptors/base_url_interceptor.dart';
 
@@ -30,18 +30,18 @@ void _registerDios() {
 }
 
 void _registerApis() {
-  locator.registerLazySingleton(() => TalentPitchApi(
+  locator.registerLazySingleton(() => TalentsApi(
       locator<HttpDioManager>(instanceName: 'TalentPitchHttpDioManager').dio));
 
-  locator.registerLazySingleton(() => CategoryVideosApi(
+  locator.registerLazySingleton(() => TalentCategoryDetailApi(
       locator<HttpDioManager>(instanceName: 'CategoryVideosHttpDioManager')
           .dio));
 }
 
 void _registerRepositories() {
   locator.registerLazySingleton(
-      () => PitchRepository(talentPitchApi: locator<TalentPitchApi>()));
+      () => TalentsRepository(talentPitchApi: locator<TalentsApi>()));
 
-  locator.registerLazySingleton(() => CategoryVideosRepository(
-      categoryVideosApi: locator<CategoryVideosApi>()));
+  locator.registerLazySingleton(() => TalentCategoryDetailRepository(
+      talentCategoryDetailApi: locator<TalentCategoryDetailApi>()));
 }

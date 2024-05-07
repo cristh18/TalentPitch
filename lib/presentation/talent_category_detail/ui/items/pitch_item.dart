@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../data/datasources/remote/dtos/video_data_response_dto.dart';
+import '../../../../data/datasources/remote/dtos/pitch_dto.dart';
 
 class PicthItem extends StatelessWidget {
   const PicthItem({
@@ -8,8 +8,8 @@ class PicthItem extends StatelessWidget {
     required this.onVideoSelected,
   }) : super(key: key);
 
-  final VideoDataResponseDto categoryVideo;
-  final Function(VideoDataResponseDto) onVideoSelected;
+  final PitchDto categoryVideo;
+  final Function(PitchDto) onVideoSelected;
 
   @override
   Widget build(BuildContext context) {

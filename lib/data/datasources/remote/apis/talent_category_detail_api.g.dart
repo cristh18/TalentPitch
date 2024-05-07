@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category_videos_api.dart';
+part of 'talent_category_detail_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'category_videos_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CategoryVideosApi implements CategoryVideosApi {
-  _CategoryVideosApi(
+class _TalentCategoryDetailApi implements TalentCategoryDetailApi {
+  _TalentCategoryDetailApi(
     this._dio, {
     this.baseUrl,
   });
@@ -19,13 +19,13 @@ class _CategoryVideosApi implements CategoryVideosApi {
   String? baseUrl;
 
   @override
-  Future<CategoryVideosResponseDto> getCategoryVideos(String url) async {
+  Future<TalentCategoryDetailDto> getTalentCategoryDetail(String url) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<CategoryVideosResponseDto>(Options(
+        _setStreamType<TalentCategoryDetailDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -41,7 +41,7 @@ class _CategoryVideosApi implements CategoryVideosApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CategoryVideosResponseDto.fromJson(_result.data!);
+    final value = TalentCategoryDetailDto.fromJson(_result.data!);
     return value;
   }
 

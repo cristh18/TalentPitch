@@ -1,5 +1,5 @@
-class PitchModel {
-  const PitchModel(
+class TalentCategoriesModel {
+  const TalentCategoriesModel(
       {required this.title,
       required this.key,
       required this.url,
@@ -14,6 +14,6 @@ class PitchModel {
 
   @override
   String toString() {
-    return 'PitchModel{title: $title, key: $key, url: $url, type: $type, image: $image}';
+    return 'TalentCategoriesModel{title: $title, key: $key, url: $url, type: $type, image: $image}';
   }
 }

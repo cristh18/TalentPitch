@@ -9,22 +9,22 @@ enum HomeStatus {
 class HomeState extends Equatable {
   const HomeState({
     this.status = HomeStatus.loading,
-    this.pitches = const <PitchModel>[],
+    this.talentCategories = const <TalentCategoriesModel>[],
   });
 
   final HomeStatus status;
-  final List<PitchModel> pitches;
+  final List<TalentCategoriesModel> talentCategories;
 
   HomeState copyWith({
-  HomeStatus? status,
-    List<PitchModel>? pitches,
+    HomeStatus? status,
+    List<TalentCategoriesModel>? talentCategories,
   }) {
     return HomeState(
       status: status ?? this.status,
-      pitches: pitches ?? this.pitches,
+      talentCategories: talentCategories ?? this.talentCategories,
     );
   }
 
   @override
-  List<Object?> get props => <Object?>[status, pitches];
+  List<Object?> get props => <Object?>[status, talentCategories];
 }

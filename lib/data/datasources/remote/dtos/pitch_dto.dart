@@ -4,8 +4,8 @@ import '../../../../utils/date_util.dart';
 import '../../../../utils/general_util.dart';
 
 @JsonSerializable(explicitToJson: true)
-class VideoDataResponseDto {
-  VideoDataResponseDto({
+class PitchDto {
+  PitchDto({
     required this.about,
     required this.aboutVideo,
     required this.avatar,
@@ -52,8 +52,8 @@ class VideoDataResponseDto {
     required this.workMethodologies,
   });
 
-  factory VideoDataResponseDto.fromJson(Map<String, dynamic> json) {
-    return VideoDataResponseDto(
+  factory PitchDto.fromJson(Map<String, dynamic> json) {
+    return PitchDto(
       about: json['about'] ?? '',
       aboutVideo: json['about_video'] ?? '',
       avatar: json['avatar'] ?? '',

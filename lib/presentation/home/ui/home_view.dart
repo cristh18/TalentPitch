@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/models/pitch_model.dart';
-import '../../pitch_category/ui/pitch_category_page.dart';
+import '../../../domain/models/talent_categories_model.dart';
+import '../../talent_category_detail/ui/talent_category_detail_page.dart';
 import '../cubit/home_cubit.dart';
-import 'items/category_item.dart';
+import 'items/talent_category_item.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -45,10 +45,10 @@ class HomeView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             case HomeStatus.error:
-              final List<PitchModel> localPicthes = state.pitches;
+              final List<TalentCategoriesModel> localPicthes = state.talentCategories;
               if (localPicthes.isEmpty) {
                 return RefreshIndicator(
-                  onRefresh: cubit.getTalentPitches,
+                  onRefresh: cubit.getTalentCategories,
                   child: ListView(
                     children: const <Widget>[
                       Center(
@@ -59,11 +59,11 @@ class HomeView extends StatelessWidget {
                 );
               } else {
                 return _BuildAPODBodyWidget(
-                    pitches: localPicthes, cubit: cubit);
+                    talentCategories: localPicthes, cubit: cubit);
               }
             case HomeStatus.success:
-              final List<PitchModel> pitches = state.pitches;
-              return _BuildAPODBodyWidget(pitches: pitches, cubit: cubit);
+              final List<TalentCategoriesModel> talentCategories = state.talentCategories;
+              return _BuildAPODBodyWidget(talentCategories: talentCategories, cubit: cubit);
           }
         },
       ),
@@ -73,10 +73,10 @@ class HomeView extends StatelessWidget {
 
 class _BuildAPODBodyWidget extends StatelessWidget {
   const _BuildAPODBodyWidget({
-    required this.pitches,
+    required this.talentCategories,
     required this.cubit,
   });
-  final List<PitchModel> pitches;
+  final List<TalentCategoriesModel> talentCategories;
   final HomeCubit cubit;
   @override
   Widget build(BuildContext context) {
@@ -98,8 +98,8 @@ class _BuildAPODBodyWidget extends StatelessWidget {
           ),
           Expanded(
             child: __BuildListWidget(
-              pitches: pitches,
-              onRefresh: cubit.getTalentPitches,
+              talentCategories: talentCategories,
+              onRefresh: cubit.getTalentCategories,
             ),
           ),
         ],
@@ -110,10 +110,10 @@ class _BuildAPODBodyWidget extends StatelessWidget {
 
 class __BuildListWidget extends StatelessWidget {
   const __BuildListWidget({
-    required this.pitches,
+    required this.talentCategories,
     required this.onRefresh,
   });
-  final List<PitchModel> pitches;
+  final List<TalentCategoriesModel> talentCategories;
   final RefreshCallback onRefresh;
 
   @override
@@ -123,9 +123,9 @@ class __BuildListWidget extends StatelessWidget {
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 20),
         shrinkWrap: true,
-        itemCount: pitches.length,
+        itemCount: talentCategories.length,
         itemBuilder: (BuildContext context, int index) {
-          final PitchModel pitch = pitches[index];
+          final TalentCategoriesModel talentCategory = talentCategories[index];
 
           return InkWell(
             onTap: () {
@@ -133,14 +133,14 @@ class __BuildListWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute<dynamic>(
                   builder: (BuildContext context) =>
-                      PitchCategoryPage(categoryVideosUrl: pitch.url),
+                      TalentCategoryDetailPage(talentCategoryUrl: talentCategory.url),
                 ),
               );
             },
-            child: CategoryItem(
-              title: pitch.title,
-              imageUrl: pitch.image,
-              type: pitch.type,
+            child: TalentCategoryItem(
+              title: talentCategory.title,
+              imageUrl: talentCategory.image,
+              type: talentCategory.type,
             ),
           );
         },

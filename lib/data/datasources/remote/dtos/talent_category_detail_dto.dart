@@ -1,7 +1,7 @@
-import 'video_data_response_dto.dart';
+import 'pitch_dto.dart';
 
-class CategoryVideosResponseDto {
-  CategoryVideosResponseDto({
+class TalentCategoryDetailDto {
+  TalentCategoryDetailDto({
     required this.count,
     required this.data,
     required this.image,
@@ -10,14 +10,14 @@ class CategoryVideosResponseDto {
     required this.title,
   });
 
-  factory CategoryVideosResponseDto.fromJson(Map<String, dynamic> json) {
-    return CategoryVideosResponseDto(
+  factory TalentCategoryDetailDto.fromJson(Map<String, dynamic> json) {
+    return TalentCategoryDetailDto(
       count: json['count'] ?? 0,
       data: (json['data'] as List<dynamic>?)
               ?.map((dynamic e) =>
-                  VideoDataResponseDto.fromJson(e as Map<String, dynamic>))
+                  PitchDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          <VideoDataResponseDto>[],
+          <PitchDto>[],
       image: json['image'] ?? '',
       key: json['key'] ?? '',
       modelData: json['model_data'] ?? '',
@@ -26,7 +26,7 @@ class CategoryVideosResponseDto {
   }
 
   final int count;
-  final List<VideoDataResponseDto> data;
+  final List<PitchDto> data;
   final String image;
   final String key;
   final String modelData;

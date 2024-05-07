@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
+import '../../../data/datasources/remote/dtos/pitch_dto.dart';
 import '../../video_player/ui/media_player.dart';
-import '../cubit/pitch_category_cubit.dart';
+import '../cubit/talent_category_detail_cubit.dart';
 import 'items/pitch_item.dart';
 
-class PitchCategoryView extends StatelessWidget {
-  const PitchCategoryView({Key? key}) : super(key: key);
+class TalentCategoryDetailView extends StatelessWidget {
+  const TalentCategoryDetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +14,28 @@ class PitchCategoryView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Category Videos View'),
       ),
-      body: BlocBuilder<PitchCategoryCubit, PitchCategoryState>(
-        builder: (BuildContext context, PitchCategoryState state) {
+      body: BlocBuilder<TalentCategoryDetailCubit, TalentCategoryDetailState>(
+        builder: (BuildContext context, TalentCategoryDetailState state) {
           switch (state.status) {
-            case PictCategoryStatus.loading:
+            case TalentCategoryDetailStatus.loading:
               return _showLoaderWidget();
-            case PictCategoryStatus.error:
+            case TalentCategoryDetailStatus.error:
               return _showErrorWidget();
-            case PictCategoryStatus.success:
-              return _showCategoryVideoListWidget(state);
+            case TalentCategoryDetailStatus.success:
+              return _showCategoryPitchesWidget(state);
           }
         },
       ),
     );
   }
 
-  ListView _showCategoryVideoListWidget(PitchCategoryState state) {
+  ListView _showCategoryPitchesWidget(TalentCategoryDetailState state) {
     return ListView.builder(
-      itemCount: state.videos.length,
+      itemCount: state.pitches.length,
       itemBuilder: (BuildContext context, int index) {
         return PicthItem(
-          categoryVideo: state.videos[index],
-          onVideoSelected: (VideoDataResponseDto video) {
+          categoryVideo: state.pitches[index],
+          onVideoSelected: (PitchDto video) {
             _navigateToMoviePlayer(context, video);
           },
         );
@@ -55,8 +55,7 @@ class PitchCategoryView extends StatelessWidget {
     );
   }
 
-  void _navigateToMoviePlayer(
-      BuildContext context, VideoDataResponseDto video) {
+  void _navigateToMoviePlayer(BuildContext context, PitchDto video) {
     Navigator.push(
       context,
       MaterialPageRoute<dynamic>(

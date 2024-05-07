@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class CategoryItem extends StatelessWidget {
-  CategoryItem({
+class TalentCategoryItem extends StatelessWidget {
+  TalentCategoryItem({
     super.key,
     required this.title,
     required this.imageUrl,
@@ -111,7 +111,6 @@ class _ParallaxFlowDelegate extends FlowDelegate {
 
   @override
   void paintChildren(FlowPaintingContext context) {
-    // Calculate the position of this list item within the viewport.
     final RenderBox scrollableBox =
         scrollable.context.findRenderObject()! as RenderBox;
     final RenderBox listItemBox =
@@ -121,18 +120,12 @@ class _ParallaxFlowDelegate extends FlowDelegate {
       ancestor: scrollableBox,
     );
 
-    // Determine the percent position of this list item within the
-    // scrollable area.
     final double viewportDimension = scrollable.position.viewportDimension;
     final double scrollFraction =
         (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
 
-    // Calculate the vertical alignment of the background
-    // based on the scroll percent.
     final Alignment verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
 
-    // Convert the background alignment into a pixel offset for
-    // painting purposes.
     final Size backgroundSize =
         (backgroundImageKey.currentContext!.findRenderObject()! as RenderBox)
             .size;
@@ -142,7 +135,6 @@ class _ParallaxFlowDelegate extends FlowDelegate {
       Offset.zero & listItemSize,
     );
 
-    // Paint the background.
     context.paintChild(
       0,
       transform: Transform.translate(
