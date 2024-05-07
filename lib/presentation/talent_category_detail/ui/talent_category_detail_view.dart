@@ -12,7 +12,7 @@ class TalentCategoryDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Category Videos View'),
+        title: const Text('Pitches'),
       ),
       body: BlocBuilder<TalentCategoryDetailCubit, TalentCategoryDetailState>(
         builder: (BuildContext context, TalentCategoryDetailState state) {

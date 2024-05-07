@@ -90,7 +90,7 @@ class _BuildAPODBodyWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(
-            'Featured Pictures',
+            'Featured Talent Categories',
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
