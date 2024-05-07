@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../data/datasources/remote/dtos/video_data_response_dto.dart';
 
-class CategoryVideoItem extends StatelessWidget {
-  const CategoryVideoItem({
+class PicthItem extends StatelessWidget {
+  const PicthItem({
     Key? key,
     required this.categoryVideo,
     required this.onVideoSelected,

@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class PitchItem extends StatelessWidget {
-  PitchItem({
+class CategoryItem extends StatelessWidget {
+  CategoryItem({
     super.key,
     required this.title,
     required this.imageUrl,

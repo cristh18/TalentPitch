@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
 import '../../video_player/ui/media_player.dart';
-import '../cubit/category_videos_cubit.dart';
-import 'items/category_video_item.dart';
+import '../cubit/pitch_category_cubit.dart';
+import 'items/pitch_item.dart';
 
-class CategoryVideosView extends StatelessWidget {
-  const CategoryVideosView({Key? key}) : super(key: key);
+class PitchCategoryView extends StatelessWidget {
+  const PitchCategoryView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class CategoryVideosView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Category Videos View'),
       ),
-      body: BlocBuilder<CategoryVideosCubit, CategoryVideosState>(
-        builder: (BuildContext context, CategoryVideosState state) {
+      body: BlocBuilder<PitchCategoryCubit, PitchCategoryState>(
+        builder: (BuildContext context, PitchCategoryState state) {
           switch (state.status) {
-            case CategoryVideosStatus.loading:
+            case PictCategoryStatus.loading:
               return _showLoaderWidget();
-            case CategoryVideosStatus.error:
+            case PictCategoryStatus.error:
               return _showErrorWidget();
-            case CategoryVideosStatus.success:
+            case PictCategoryStatus.success:
               return _showCategoryVideoListWidget(state);
           }
         },
@@ -29,11 +29,11 @@ class CategoryVideosView extends StatelessWidget {
     );
   }
 
-  ListView _showCategoryVideoListWidget(CategoryVideosState state) {
+  ListView _showCategoryVideoListWidget(PitchCategoryState state) {
     return ListView.builder(
       itemCount: state.videos.length,
       itemBuilder: (BuildContext context, int index) {
-        return CategoryVideoItem(
+        return PicthItem(
           categoryVideo: state.videos[index],
           onVideoSelected: (VideoDataResponseDto video) {
             _navigateToMoviePlayer(context, video);

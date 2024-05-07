@@ -6,17 +6,17 @@ import '../../../data/datasources/remote/dtos/category_videos_response_dto.dart'
 import '../../../data/datasources/remote/dtos/video_data_response_dto.dart';
 import '../../../data/repositories/category_videos_repository.dart';
 
-part 'category_videos_state.dart';
+part 'pitch_category_state.dart';
 
-class CategoryVideosCubit extends Cubit<CategoryVideosState> {
-  CategoryVideosCubit({
+class PitchCategoryCubit extends Cubit<PitchCategoryState> {
+  PitchCategoryCubit({
     required this.categoryVideosRepository,
-  }) : super(const CategoryVideosState());
+  }) : super(const PitchCategoryState());
 
   final CategoryVideosRepository categoryVideosRepository;
 
   Future<void> getCategoryVideos(String url) async {
-    emit(state.copyWith(status: CategoryVideosStatus.loading));
+    emit(state.copyWith(status: PictCategoryStatus.loading));
     try {
       final CategoryVideosResponseDto categoryVideosResponseDto =
           await categoryVideosRepository.getCategoryVideos(url);
@@ -26,10 +26,10 @@ class CategoryVideosCubit extends Cubit<CategoryVideosState> {
         logger.i(element.toString());
       }
       emit(state.copyWith(
-          status: CategoryVideosStatus.success,
+          status: PictCategoryStatus.success,
           videos: categoryVideosResponseDto.data));
     } catch (e) {
-      emit(state.copyWith(status: CategoryVideosStatus.error));
+      emit(state.copyWith(status: PictCategoryStatus.error));
     }
   }
 }

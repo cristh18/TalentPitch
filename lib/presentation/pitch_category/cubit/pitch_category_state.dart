@@ -1,25 +1,25 @@
-part of 'category_videos_cubit.dart';
+part of 'pitch_category_cubit.dart';
 
-enum CategoryVideosStatus {
+enum PictCategoryStatus {
   loading,
   success,
   error,
 }
 
-class CategoryVideosState extends Equatable {
-  const CategoryVideosState({
-    this.status = CategoryVideosStatus.loading,
+class PitchCategoryState extends Equatable {
+  const PitchCategoryState({
+    this.status = PictCategoryStatus.loading,
     this.videos = const <VideoDataResponseDto>[],
   });
 
-  final CategoryVideosStatus status;
+  final PictCategoryStatus status;
   final List<VideoDataResponseDto> videos;
 
-  CategoryVideosState copyWith({
-    CategoryVideosStatus? status,
+  PitchCategoryState copyWith({
+    PictCategoryStatus? status,
     List<VideoDataResponseDto>? videos,
   }) {
-    return CategoryVideosState(
+    return PitchCategoryState(
       status: status ?? this.status,
       videos: videos ?? this.videos,
     );
