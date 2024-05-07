@@ -2,15 +2,15 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../data/datasources/remote/dtos/pitch_dto.dart';
+import '../../../domain/models/pitch_model.dart';
 
 class MoviePlayer extends StatefulWidget {
   const MoviePlayer({
     Key? key,
-    required this.video,
+    required this.pitch,
   }) : super(key: key);
 
-  final PitchDto video;
+  final PitchModel pitch;
 
   @override
   State<MoviePlayer> createState() => _MoviePlayerState();
@@ -25,7 +25,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
     super.initState();
 
     videoPlayerController =
-        VideoPlayerController.networkUrl(Uri.parse(widget.video.videoUrl))
+        VideoPlayerController.networkUrl(Uri.parse(widget.pitch.videoUrl))
           ..initialize().then((_) {
             // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
             setState(() {});

@@ -9,15 +9,15 @@ enum TalentCategoryDetailStatus {
 class TalentCategoryDetailState extends Equatable {
   const TalentCategoryDetailState({
     this.status = TalentCategoryDetailStatus.loading,
-    this.pitches = const <PitchDto>[],
+    this.pitches = const <PitchModel>[],
   });
 
   final TalentCategoryDetailStatus status;
-  final List<PitchDto> pitches;
+  final List<PitchModel> pitches;
 
   TalentCategoryDetailState copyWith({
     TalentCategoryDetailStatus? status,
-    List<PitchDto>? pitches,
+    List<PitchModel>? pitches,
   }) {
     return TalentCategoryDetailState(
       status: status ?? this.status,

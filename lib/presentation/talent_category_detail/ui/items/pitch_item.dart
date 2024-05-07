@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../../../data/datasources/remote/dtos/pitch_dto.dart';
+import '../../../../domain/models/pitch_model.dart';
 
 class PicthItem extends StatelessWidget {
   const PicthItem({
     Key? key,
-    required this.categoryVideo,
-    required this.onVideoSelected,
+    required this.pitch,
+    required this.onPitchSelected,
   }) : super(key: key);
 
-  final PitchDto categoryVideo;
-  final Function(PitchDto) onVideoSelected;
+  final PitchModel pitch;
+  final Function(PitchModel) onPitchSelected;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onVideoSelected(categoryVideo),
+      onTap: () => onPitchSelected(pitch),
       child: Container(
         padding: const EdgeInsets.all(8),
         child: Row(
@@ -23,7 +23,7 @@ class PicthItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                categoryVideo.avatar,
+                pitch.avatar,
                 fit: BoxFit.cover,
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
@@ -42,12 +42,12 @@ class PicthItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  categoryVideo.name,
+                  pitch.name,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  categoryVideo.desiredRole,
+                  pitch.desiredRole,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
