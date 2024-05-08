@@ -7,6 +7,11 @@ extension PitchDtoMapper on PitchDto {
         name: name,
         avatar: avatar,
         desiredRole: desiredRole,
+        country: country,
+        city: city,
+        knowledges: knowledges,
+        skills: skills,
+        resumeDescription: resumeDescription,
         video: video,
         videoUrl: videoUrl);
   }

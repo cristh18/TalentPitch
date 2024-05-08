@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/models/pitch_model.dart';
-import '../../video_player/ui/media_player.dart';
+import '../../pitch_detail/ui/pitch_detail_view.dart';
 import '../cubit/talent_category_detail_cubit.dart';
 import 'items/pitch_item.dart';
 
@@ -36,7 +36,7 @@ class TalentCategoryDetailView extends StatelessWidget {
         return PicthItem(
           pitch: state.pitches[index],
           onPitchSelected: (PitchModel pitch) {
-            _navigateToMoviePlayer(context, pitch);
+            _navigateToPicthDetailView(context, pitch);
           },
         );
       },
@@ -55,11 +55,11 @@ class TalentCategoryDetailView extends StatelessWidget {
     );
   }
 
-  void _navigateToMoviePlayer(BuildContext context, PitchModel pitch) {
+  void _navigateToPicthDetailView(BuildContext context, PitchModel pitch) {
     Navigator.push(
       context,
       MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => MoviePlayer(pitch: pitch),
+        builder: (BuildContext context) => PitchDetailView(pitchModel: pitch),
       ),
     );
   }
