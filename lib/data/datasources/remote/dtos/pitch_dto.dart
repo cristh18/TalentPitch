@@ -90,7 +90,7 @@ class PitchDto {
       reviewGeneralUser: json['review_general_user'] ?? 0,
       skills: json['skills'] ?? '',
       slug: json['slug'] ?? '',
-      sponsored: json['sponsored'] ?? 0,
+      sponsored: getConnectedValue(json['connected']),
       twitter: json['twitter'] ?? '',
       video: json['video'] ?? '',
       videoType: json['video_type'] ?? '',
@@ -137,7 +137,7 @@ class PitchDto {
   final int reviewGeneralUser;
   final String skills;
   final String slug;
-  final int sponsored;
+  final String sponsored;
   final String twitter;
   final String video;
   final String videoType;

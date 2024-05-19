@@ -26,7 +26,9 @@ class TalentCategoryDetailCubit extends Cubit<TalentCategoryDetailState> {
       emit(state.copyWith(
           status: TalentCategoryDetailStatus.success, pitches: pitches));
     } catch (e) {
-      emit(state.copyWith(status: TalentCategoryDetailStatus.error));
+      emit(state.copyWith(
+          status: TalentCategoryDetailStatus.error,
+          errorDescrition: e.toString()));
     }
   }
 }

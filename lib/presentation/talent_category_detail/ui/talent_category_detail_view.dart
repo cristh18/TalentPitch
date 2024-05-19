@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/models/pitch_model.dart';
 import '../../pitch_detail/ui/pitch_detail_view.dart';
@@ -20,7 +21,7 @@ class TalentCategoryDetailView extends StatelessWidget {
             case TalentCategoryDetailStatus.loading:
               return _showLoaderWidget();
             case TalentCategoryDetailStatus.error:
-              return _showErrorWidget();
+              return _showErrorWidget(state);
             case TalentCategoryDetailStatus.success:
               return _showCategoryPitchesWidget(state);
           }
@@ -43,9 +44,10 @@ class TalentCategoryDetailView extends StatelessWidget {
     );
   }
 
-  Center _showErrorWidget() {
-    return const Center(
-      child: Text('Error'),
+  Center _showErrorWidget(TalentCategoryDetailState state) {
+    final String errorDescrition = state.errorDescrition;
+    return Center(
+      child: Text('Error: $errorDescrition'),
     );
   }
 
