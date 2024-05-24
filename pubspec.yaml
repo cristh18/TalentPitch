@@ -52,6 +52,8 @@ dependencies:
   chewie: ^1.8.1
   video_player: ^2.8.6
   flutter_gen_runner: ^5.5.0+1
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
