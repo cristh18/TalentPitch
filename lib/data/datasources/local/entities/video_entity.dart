@@ -1,14 +1,14 @@
-class PlaylistEntity {
-  const PlaylistEntity(
+class VideoEntity {
+  const VideoEntity(
       {required this.id,
-      required this.name,
-      required this.description,
+      required this.playlistId,
+      required this.url,
       required this.createdAt,
       required this.updatedAt});
 
   final int id;
-  final String name;
-  final String description;
+  final int playlistId;
+  final String url;
   final DateTime createdAt;
   final DateTime updatedAt;
 }
