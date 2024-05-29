@@ -24,7 +24,7 @@ class PitchDetailCubit extends Cubit<PitchDetailState> {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now());
     final VideoEntity video = VideoEntity(
-        id: 1,
+        id: pitchModel.id,
         playlistId: playlist.id,
         url: pitchModel.videoUrl,
         createdAt: DateTime.now(),

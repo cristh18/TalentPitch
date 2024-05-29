@@ -3,6 +3,8 @@ import 'entities/playlist_entity.dart';
 import 'entities/video_entity.dart';
 
 class LocalDataSource {
+
+  LocalDataSource();
   final DatabaseHelper databaseHelper = DatabaseHelper.instance;
 
   Future<void> saveVideo(PlaylistEntity playlist, VideoEntity video) async {

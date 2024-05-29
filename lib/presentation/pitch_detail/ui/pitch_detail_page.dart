@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/datasources/local/entities/playlist_entity.dart';
-import '../../../data/datasources/local/entities/video_entity.dart';
 import '../../../data/repositories/favorite_talents_repository.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/models/pitch_model.dart';

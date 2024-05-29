@@ -1,6 +1,7 @@
 class PitchModel {
   PitchModel(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.avatar,
       required this.desiredRole,
       required this.country,
@@ -11,6 +12,7 @@ class PitchModel {
       required this.video,
       required this.videoUrl});
 
+  final int id;
   final String name;
   final String avatar;
   final String desiredRole;

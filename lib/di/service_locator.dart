@@ -42,7 +42,7 @@ void _registerApis() {
 }
 
 void _registerDatasources() {
-  locator.registerSingleton(() => LocalDataSource());
+  locator.registerLazySingleton(() => LocalDataSource());
 }
 
 void _registerRepositories() {

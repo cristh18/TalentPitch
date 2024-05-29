@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/datasources/local/entities/playlist_entity.dart';
-import '../../../data/datasources/local/entities/video_entity.dart';
 import '../../../domain/models/pitch_model.dart';
 import '../cubit/pitch_detail_cubit.dart';
 import 'media_player.dart';

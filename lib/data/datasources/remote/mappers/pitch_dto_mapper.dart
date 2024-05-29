@@ -4,6 +4,7 @@ import '../dtos/pitch_dto.dart';
 extension PitchDtoMapper on PitchDto {
   PitchModel toDomain() {
     return PitchModel(
+        id: id,
         name: name,
         avatar: avatar,
         desiredRole: desiredRole,
