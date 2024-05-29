@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/datasources/local/entities/playlist_entity.dart';
+import '../../../data/datasources/local/entities/video_entity.dart';
 import '../../../domain/models/pitch_model.dart';
+import '../cubit/pitch_detail_cubit.dart';
 import 'media_player.dart';
 
 class PitchDetailView extends StatelessWidget {
@@ -25,6 +29,7 @@ class PitchDetailView extends StatelessWidget {
   }
 
   Positioned _buildActions(BuildContext context) {
+    final PitchDetailCubit cubit = context.read<PitchDetailCubit>();
     return Positioned(
       bottom: 50,
       width: MediaQuery.of(context).size.width,
@@ -42,7 +47,9 @@ class PitchDetailView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                cubit.saveVideo(pitchModel);
+              },
               child: RichText(
                 text: TextSpan(
                   style: Theme.of(context)

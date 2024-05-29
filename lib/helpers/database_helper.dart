@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../data/datasources/local/entities/video_entity.dart';
 
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
@@ -25,7 +28,6 @@ class DatabaseHelper {
   }
 
   Future<void> _onCreate(Database db, int version) async {
-    // Run the CREATE TABLE statement on the database.
     await db.execute('''
       CREATE TABLE playlist (
         id INTEGER PRIMARY KEY,
@@ -47,4 +49,42 @@ class DatabaseHelper {
       )
     ''');
   }
+
+  Future<int> insert(String table, Map<String, Object?> data) async {
+    final Database db = await instance.database;
+    try {
+      return await db.insert(table, data,
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    } catch (e) {
+      final Logger logger = Logger();
+      logger.e(e);
+      return -1;
+    }
+  }
+
+  // Future<int> insert(VideoEntity videoEntity) async {
+  //   final Database db = await instance.database;
+  //   try {
+  //     return await db.insert('video', videoEntity.toMap(),
+  //         conflictAlgorithm: ConflictAlgorithm.replace);
+  //   } catch (e) {
+  //     final Logger logger = Logger();
+  //     logger.e(e);
+  //     return -1;
+  //   }
+  // }
+
+  // Future<List<VideoEntity>> getVideos() async {
+  //   final Database db = await instance.database;
+  //   final List<Map<String, Object?>> maps = await db.query('video');
+  //   return List<VideoEntity>.generate(maps.length, (int index) {
+  //     return VideoEntity(
+  //       id: maps[index]['id'] as int,
+  //       playlistId: maps[index]['playlist_id'] as int,
+  //       url: maps[index]['url'] as String,
+  //       createdAt: DateTime.parse(maps[index]['created_at'] as String),
+  //       updatedAt: DateTime.parse(maps[index]['updated_at'] as String),
+  //     );
+  //   });
+  // }
 }
