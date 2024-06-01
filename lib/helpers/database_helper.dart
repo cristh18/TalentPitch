@@ -52,7 +52,7 @@ class DatabaseHelper {
     final Database db = await instance.database;
     try {
       return await db.insert(table, data,
-          conflictAlgorithm: ConflictAlgorithm.replace);
+          conflictAlgorithm: ConflictAlgorithm.abort);
     } catch (e) {
       final Logger logger = Logger();
       logger.e(e);
