@@ -4,12 +4,17 @@ import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../data/datasources/local/entities/playlist_entity.dart';
+import '../data/datasources/local/entities/video_entity.dart';
+
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   static const String _databaseName = 'TalentPitch.db';
   static const int _databaseVersion = 1;
+
+  final Logger logger = Logger();
 
   static Database? _database;
   Future<Database> get database async {
@@ -48,41 +53,62 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<int> insert(String table, Map<String, Object?> data) async {
+  Future<List<PlaylistEntity>> getPlaylists() async {
     final Database db = await instance.database;
+    final List<Map<String, Object?>> results = await db.query('playlist');
+    return List<PlaylistEntity>.generate(results.length, (int index) {
+      return PlaylistEntity(
+        id: results[index]['id']! as int,
+        name: results[index]['name']! as String,
+        description: results[index]['description']! as String,
+        createdAt: DateTime.parse(results[index]['created_at']! as String),
+        updatedAt: DateTime.parse(results[index]['updated_at']! as String),
+      );
+    });
+  }
+
+  Future<int> insert(String table, Map<String, Object?> data) async {
     try {
+      final Database db = await instance.database;
       return await db.insert(table, data,
           conflictAlgorithm: ConflictAlgorithm.abort);
     } catch (e) {
-      final Logger logger = Logger();
-      logger.e(e);
+      logger.e('Error inserting data: $e');
       return -1;
     }
   }
 
-  // Future<int> insert(VideoEntity videoEntity) async {
-  //   final Database db = await instance.database;
-  //   try {
-  //     return await db.insert('video', videoEntity.toMap(),
-  //         conflictAlgorithm: ConflictAlgorithm.replace);
-  //   } catch (e) {
-  //     final Logger logger = Logger();
-  //     logger.e(e);
-  //     return -1;
-  //   }
-  // }
+  Future<List<VideoEntity>> getVideos() async {
+    final Database db = await instance.database;
+    final List<Map<String, Object?>> results = await db.query('video');
+    return List<VideoEntity>.generate(results.length, (int index) {
+      return VideoEntity(
+        id: results[index]['id']! as int,
+        playlistId: results[index]['playlist_id']! as int,
+        url: results[index]['url']! as String,
+        createdAt: DateTime.parse(results[index]['created_at']! as String),
+        updatedAt: DateTime.parse(results[index]['updated_at']! as String),
+      );
+    });
+  }
 
-  // Future<List<VideoEntity>> getVideos() async {
-  //   final Database db = await instance.database;
-  //   final List<Map<String, Object?>> maps = await db.query('video');
-  //   return List<VideoEntity>.generate(maps.length, (int index) {
-  //     return VideoEntity(
-  //       id: maps[index]['id'] as int,
-  //       playlistId: maps[index]['playlist_id'] as int,
-  //       url: maps[index]['url'] as String,
-  //       createdAt: DateTime.parse(maps[index]['created_at'] as String),
-  //       updatedAt: DateTime.parse(maps[index]['updated_at'] as String),
-  //     );
-  //   });
-  // }
+  Future<List<VideoEntity>> getVideosByPlaylistId(int playlistId) async {
+    final Database db = await instance.database;
+    final List<Map<String, Object?>> results = await db.query('video',
+        where: 'playlist_id = ?', whereArgs: <int>[playlistId]);
+    return List<VideoEntity>.generate(results.length, (int index) {
+      return VideoEntity(
+        id: results[index]['id']! as int,
+        playlistId: results[index]['playlist_id']! as int,
+        url: results[index]['url']! as String,
+        createdAt: DateTime.parse(results[index]['created_at']! as String),
+        updatedAt: DateTime.parse(results[index]['updated_at']! as String),
+      );
+    });
+  }
+
+  Future<int> delete(String table, int id) async {
+    final Database db = await instance.database;
+    return db.delete(table, where: 'id = ?', whereArgs: <int>[id]);
+  }
 }

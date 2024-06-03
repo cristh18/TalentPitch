@@ -12,13 +12,9 @@ class FavoriteTalentsRepository{
     await dataSource.saveVideo(playlist, video);
   }
 
-  // Future<List<Talent>> getFavoriteTalents() async {
-  //   return _dataSource.getFavoriteTalents();
-  // }
-
-  // Future<void> addFavoriteTalent(Talent talent) async {
-  //   return _dataSource.addFavoriteTalent(talent);
-  // }
+  Future<List<VideoEntity>> getFavoriteTalents() async {
+    return dataSource.getFavoriteTalents();
+  }
 
   // Future<void> removeFavoriteTalent(Talent talent) async {
   //   return _dataSource.removeFavoriteTalent(talent);
