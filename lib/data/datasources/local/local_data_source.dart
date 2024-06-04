@@ -36,7 +36,7 @@ class LocalDataSource {
     }
   }
 
-  Future<int> removeFavoriteTalent(VideoEntity video) async {
-    return databaseHelper.delete('video', video.id);
+  Future<int> removeFavoriteTalent(int videoId) async {
+    return databaseHelper.delete('video', videoId);
   }
 }

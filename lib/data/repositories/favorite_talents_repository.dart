@@ -2,8 +2,7 @@ import '../datasources/local/entities/playlist_entity.dart';
 import '../datasources/local/entities/video_entity.dart';
 import '../datasources/local/local_data_source.dart';
 
-class FavoriteTalentsRepository{
-
+class FavoriteTalentsRepository {
   FavoriteTalentsRepository({required this.dataSource});
 
   final LocalDataSource dataSource;
@@ -16,7 +15,7 @@ class FavoriteTalentsRepository{
     return dataSource.getFavoriteTalents();
   }
 
-  // Future<void> removeFavoriteTalent(Talent talent) async {
-  //   return _dataSource.removeFavoriteTalent(talent);
-  // }
+  Future<int> removeFavoriteTalent(int videoId) async {
+    return dataSource.removeFavoriteTalent(videoId);
+  }
 }
