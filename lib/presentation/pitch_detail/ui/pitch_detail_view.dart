@@ -215,7 +215,7 @@ class PitchDetailView extends StatelessWidget {
   Widget _showSavingVideoResult(BuildContext context) {
     return BlocBuilder<PitchDetailCubit, PitchDetailState>(
       builder: (BuildContext context, PitchDetailState state) {
-        final PitchDetailCubit cubit = context.read<PitchDetailCubit>();
+    
         switch (state.status) {
           case PitchDetailStatus.loading:
             return const Center(
