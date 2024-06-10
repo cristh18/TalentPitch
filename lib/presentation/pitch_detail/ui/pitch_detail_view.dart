@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/models/pitch_model.dart';
-import '../../home/ui/home_page.dart';
-import '../cubit/pitch_detail_cubit.dart';
 import 'media_player.dart';
+import 'save_pitch_dialog.dart';
 
 class PitchDetailView extends StatelessWidget {
   const PitchDetailView({
@@ -22,7 +20,6 @@ class PitchDetailView extends StatelessWidget {
           ..._buildBackground(context),
           _buildPitchInformation(context),
           _buildActions(context),
-          _showSavingVideoResult(context)
         ],
       ),
     );
@@ -119,7 +116,6 @@ class PitchDetailView extends StatelessWidget {
   }
 
   Positioned _buildActions(BuildContext context) {
-    final PitchDetailCubit cubit = context.read<PitchDetailCubit>();
     return Positioned(
       bottom: 50,
       width: MediaQuery.of(context).size.width,
@@ -138,7 +134,9 @@ class PitchDetailView extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                cubit.saveVideo(pitchModel);
+                Navigator.of(context).restorablePush(
+                    SavePitchDialog.dialogBuilder,
+                    arguments: pitchModel.toMap());
               },
               child: RichText(
                 text: TextSpan(
@@ -209,47 +207,6 @@ class PitchDetailView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _showSavingVideoResult(BuildContext context) {
-    return BlocBuilder<PitchDetailCubit, PitchDetailState>(
-      builder: (BuildContext context, PitchDetailState state) {
-    
-        switch (state.status) {
-          case PitchDetailStatus.loading:
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          case PitchDetailStatus.error:
-            return const Center(
-              child: Text(
-                  'Failed to save video to your watchlist. Please try again.'),
-            );
-          case PitchDetailStatus.success:
-            return Column(
-              children: <Widget>[
-                const SizedBox(height: 20),
-                const Text(
-                  'Video saved to your watchlist successfully.',
-                  style: TextStyle(color: Colors.white),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<dynamic>(
-                        builder: (BuildContext context) => const HomePage(),
-                      ),
-                    );
-                  },
-                  child: const Text('Close'),
-                ),
-              ],
-            );
-        }
-      },
     );
   }
 }

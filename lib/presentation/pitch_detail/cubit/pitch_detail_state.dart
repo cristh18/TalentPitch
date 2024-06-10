@@ -1,6 +1,7 @@
 part of 'pitch_detail_cubit.dart';
 
 enum PitchDetailStatus {
+  nothing,
   loading,
   success,
   error,
@@ -8,7 +9,7 @@ enum PitchDetailStatus {
 
 class PitchDetailState extends Equatable {
   const PitchDetailState({
-    this.status = PitchDetailStatus.loading,
+    this.status = PitchDetailStatus.nothing,
   });
 
   final PitchDetailStatus status;
