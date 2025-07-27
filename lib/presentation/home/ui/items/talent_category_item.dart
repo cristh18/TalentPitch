@@ -53,7 +53,7 @@ class TalentCategoryItem extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: <Color>[
                         Colors.transparent,
-                        Colors.black.withOpacity(0.7)
+                        Colors.black.withAlpha((255 * 0.7).round())
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
